@@ -23,14 +23,14 @@ public partial class LandingPage : ContentPage
 
     private async void DisplayForecast()
     {
-        WeatherHandler weatherHandler = new WeatherHandler();
-		string weatherData = await weatherHandler.GetForecast();
+       // WeatherHandler weatherHandler = new WeatherHandler();
+		//string weatherData = await weatherHandler.GetForecast();
 
         
-        List<DayWeather> forecastItems = ParseForcastData(weatherData);
+       // List<DayWeather> forecastItems = ParseForcastData(weatherData);
 
        
-        WeatherForcast = forecastItems;
+       // WeatherForcast = forecastItems;
     }
 
     private List<DayWeather> ParseForcastData(string weatherData)

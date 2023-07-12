@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitacAss.Models
 {
-    internal class DayWeather
+    public class DayWeather
     {
         public string Day { get; set; }
         public double MinTemp { get; set; }

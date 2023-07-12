@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UnitacAss.LandingPage"
+             Title="LandingPage"
+             BackgroundColor="White">
+    <StackLayout Padding="20">
+        <Label
+            Text="Today's Weather"
+            FontSize="15"
+            TextColor="Black"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center"
+            Padding="10"/>
+        
+            <Image Source="fluent_weather_cloudy_20_filled.png" 
+                   HorizontalOptions="Center"
+                   MaximumWidthRequest="300"
+                   MaximumHeightRequest="300"
+                   />
+            <Label
+            Text="Cloudy"
+            FontSize="Caption"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"/>
+        <Label
+            Text="8 deg"
+            FontSize="Large"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"
+            Padding="15"/>
+        <Label
+            Text="Min Temp: 2 deg"
+            FontSize="Caption"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"
+            Padding="1"/>
+        <Label
+            Text="Max Temp: 14 deg"
+            FontSize="Caption"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"
+            Padding="1"/>
+
+        <ListView ItemsSource="{Binding DayWeather}"
+                  Header="The rest of the week">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Day}"
+                      Detail="{Binding MinTemp}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
