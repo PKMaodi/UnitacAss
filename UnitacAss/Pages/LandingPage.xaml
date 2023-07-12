@@ -13,50 +13,57 @@
             FontAttributes="Bold"
             HorizontalTextAlignment="Center"
             Padding="10"/>
-        
-            <Image Source="fluent_weather_cloudy_20_filled.png" 
-                   HorizontalOptions="Center"
-                   MaximumWidthRequest="300"
-                   MaximumHeightRequest="300"
-                   />
-            <Label
-            Text="Cloudy"
-            FontSize="Caption"
-            TextColor="Black"
-            FontAttributes="None"
-            HorizontalTextAlignment="Center"/>
         <Label
-            Text="8 deg"
+            Text="{Binding DayWeather.Temp, StringFormat='{0:F1}°C'}"
             FontSize="Large"
             TextColor="Black"
             FontAttributes="None"
             HorizontalTextAlignment="Center"
             Padding="15"/>
-        <Label
-            Text="Min Temp: 2 deg"
-            FontSize="Caption"
-            TextColor="Black"
-            FontAttributes="None"
-            HorizontalTextAlignment="Center"
-            Padding="1"/>
-        <Label
-            Text="Max Temp: 14 deg"
-            FontSize="Caption"
-            TextColor="Black"
-            FontAttributes="None"
-            HorizontalTextAlignment="Center"
-            Padding="1"/>
-
-        <ListView ItemsSource="{Binding DayWeather}"
-                  Header="The rest of the week"
-                  BackgroundColor="LightGray">
+        <ListView ItemsSource="{Binding WeekData}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Day}"
-                      Detail="{Binding MinTemp}"/>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="1"
+                           Text="{Binding Day}"
+                           FontAttributes="Bold" />
+                            
+                            <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="Min Temp:"
+                           FontAttributes="Italic"
+                           VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                           Grid.Column="2"
+                           Text="{Binding Min, StringFormat='{0:F1}°C'}"
+                           TextColor="Red"
+                           VerticalOptions="End" />
+
+                            <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="Max Temp:"
+                           FontAttributes="Italic"
+                           VerticalOptions="End" />
+                            <Label Grid.Row="2"
+                           Grid.Column="2"
+                           Text="{Binding Max, StringFormat='{0:F1}°C'}"
+                           TextColor="Blue"
+                           VerticalOptions="End" />
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
     </StackLayout>
 
 </ContentPage>

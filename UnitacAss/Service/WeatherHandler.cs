@@ -34,7 +34,11 @@ namespace UnitacAss.Service
 
         private void parseJSONData(object body)
         {
+            //Parse the data
             var forecastData = JsonConvert.DeserializeObject<WeatherForecast>((string)body);
+
+            // ListView to display the forecast for the week
+            var ItemsSource = forecastData.Forecast;
         }
     }
 }

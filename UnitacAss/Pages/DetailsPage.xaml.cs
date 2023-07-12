@@ -12,6 +12,9 @@ public partial class DetailsPage : ContentPage
         this.selectedForecast = selectedForecast;
         BindingContext = selectedForecast;
     }
+
+    public bool IsBackButtonEnabled { get; internal set; }
+
     private async void OnGoBackClicked(object sender, EventArgs e){
         await Navigation.PopAsync();
     }

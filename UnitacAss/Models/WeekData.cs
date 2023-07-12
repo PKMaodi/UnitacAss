@@ -8,6 +8,7 @@ namespace UnitacAss.Models
 {
     class WeekData
     {
+        public string StringFormat { get; set; }
         public string Date { get; set; }
         public string Day { get; set; }
         public int Min { get; set; }

@@ -8,6 +8,7 @@ namespace UnitacAss.Models
 {
     public class DayWeather
     {
+        public string StringFormat { get; set; }
         public double Temp { get; set; }
         public double FeelsLike { get; set; }
         public int Humidity { get; set; }

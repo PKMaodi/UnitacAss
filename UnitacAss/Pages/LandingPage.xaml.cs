@@ -5,61 +5,19 @@ namespace UnitacAss;
 
 public partial class LandingPage : ContentPage
 {
-	List<DayWeather> dayWeathers;
-	List<DayWeather> WeatherForcast
-	{
-		get { return dayWeathers; }
-		set {
-            dayWeathers = value;
-			OnPropertyChanged(nameof(WeatherForcast));
-		}
-	}
-	public LandingPage()
-	{
-		InitializeComponent();
-		DisplayForecast();
-
-    }
-
-    private async void DisplayForecast()
+    private void goToDetailsPage(object sender, SelectedItemChangedEventArgs e)
     {
-       // WeatherHandler weatherHandler = new WeatherHandler();
-		//string weatherData = await weatherHandler.GetForecast();
+        // Get the selected item's data
+        var item = e.SelectedItem as DayWeather;
 
-        
-       // List<DayWeather> forecastItems = ParseForcastData(weatherData);
+        // Create a new DetailsPage
+        var detailsPage = new DetailsPage(item);
 
-       
-       // WeatherForcast = forecastItems;
-    }
+        // Set the IsBackButtonEnabled property to true so that the user can navigate back to the LandingPage
+        detailsPage.IsBackButtonEnabled = true;
 
-    private List<DayWeather> ParseForcastData(string weatherData)
-    {
-        dynamic forecastJson = JsonConvert.DeserializeObject(weatherData);
-
-        List<DayWeather> forecastItems = new List<DayWeather>();
-
-        foreach (dynamic dailyForecast in forecastJson.forecast.forecastday)
-        {
-            string day = dailyForecast.date.ToString("dddd");
-            double minTemperature = Convert.ToDouble(dailyForecast.day.mintemp_c);
-            double maxTemperature = Convert.ToDouble(dailyForecast.day.maxtemp_c);
-
-            DayWeather forecastItem = new DayWeather { Day = day, MinTemp = minTemperature, MaxTemp = maxTemperature };
-
-            forecastItems.Add(forecastItem);
-        }
-
-        return forecastItems;
-    }
-
-    private void GotoDetailsPage(object sender, SelectedItemChangedEventArgs e)
-    {
-        if (e.SelectedItem is DayWeather selectedForecast)
-        {
-            
-            Navigation.PushAsync(new DetailsPage(selectedForecast));
-        }
+        // Navigate to the DetailsPage
+        //MainPage.Current.Navigation.PushAsync(detailsPage);
     }
 }
 
