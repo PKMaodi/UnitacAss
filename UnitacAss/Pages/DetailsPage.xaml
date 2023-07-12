@@ -6,10 +6,44 @@
              BackgroundColor="White">
     <StackLayout Padding="20">
         <Label
-            Text="12 "
+            Text="Thursday, 13 July 2023"
             FontSize="15"
             TextColor="Black"
-            FontAttributes="Bold"/>
-        
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center"
+            Padding="10"/>
+
+        <Image Source="fluent_weather_cloudy_20_filled.png" 
+                   HorizontalOptions="Center"
+                   MaximumWidthRequest="300"
+                   MaximumHeightRequest="300"
+                   />
+        <Label
+            Text="Cloudy"
+            FontSize="Caption"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"/>
+        <Label
+            Text="8 deg"
+            FontSize="Large"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"
+            Padding="15"/>
+        <Label
+            Text="Min Temp: 2 deg"
+            FontSize="Caption"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"
+            Padding="1"/>
+        <Label
+            Text="Max Temp: 14 deg"
+            FontSize="Caption"
+            TextColor="Black"
+            FontAttributes="None"
+            HorizontalTextAlignment="Center"
+            Padding="1"/>
     </StackLayout>
 </ContentPage>

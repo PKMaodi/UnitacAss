@@ -4,9 +4,10 @@
              x:Class="UnitacAss.LandingPage"
              Title="LandingPage"
              BackgroundColor="White">
+
     <StackLayout Padding="20">
         <Label
-            Text="Today's Weather"
+            Text="Pretoria"
             FontSize="15"
             TextColor="Black"
             FontAttributes="Bold"
@@ -47,7 +48,8 @@
             Padding="1"/>
 
         <ListView ItemsSource="{Binding DayWeather}"
-                  Header="The rest of the week">
+                  Header="The rest of the week"
+                  BackgroundColor="LightGray">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Day}"
@@ -56,4 +58,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
+
 </ContentPage>
