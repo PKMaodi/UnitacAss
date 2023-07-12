@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using UnitacAss.Models;
+
 namespace UnitacAss.Service
 {
     public class WeatherHandler
@@ -32,7 +34,7 @@ namespace UnitacAss.Service
 
         private void parseJSONData(object body)
         {
-            var forecastData = JsonConvert.DeserializeObject<ForecastData>(body);
+            var forecastData = JsonConvert.DeserializeObject<WeatherForecast>((string)body);
         }
     }
 }

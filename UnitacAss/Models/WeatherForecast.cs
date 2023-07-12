@@ -8,5 +8,7 @@ namespace UnitacAss.Models
 {
     class WeatherForecast
     {
+        public DayWeather Current { get; set; }
+        public List<WeekData> Forecast { get; set; }
     }
 }

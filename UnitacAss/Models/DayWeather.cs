@@ -8,8 +8,12 @@ namespace UnitacAss.Models
 {
     public class DayWeather
     {
-        public string Day { get; set; }
-        public double MinTemp { get; set; }
-        public double MaxTemp { get; set; }
+        public double Temp { get; set; }
+        public double FeelsLike { get; set; }
+        public int Humidity { get; set; }
+        public int Pressure { get; set; }
+        public int WindSpeed { get; set; }
+        public int WindDeg
+        { get; set; }
     }
 }
