@@ -31,7 +31,6 @@ namespace UnitacAss.Service
                 var body = await response.Content.ReadAsStringAsync();
                 var forecastData = JsonConvert.DeserializeObject<WeatherForecast>((string)body);
 
-                // Raise the WeatherDataReceived event
                 OnWeatherDataReceived(new WeatherDataEventArgs(forecastData));
             }
         }

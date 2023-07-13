@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using System.Collections;
 using UnitacAss.Models;
 using UnitacAss.Service;
 
@@ -6,6 +7,7 @@ namespace UnitacAss
 {
     public partial class LandingPage : ContentPage
     {
+        internal readonly ICollection WeatherItems;
         private WeatherHandler weatherHandler;
 
         public LandingPage()
@@ -18,7 +20,7 @@ namespace UnitacAss
             BindingContext = new WeatherForecast();
         }
 
-        private void WeatherHandler_WeatherDataReceived(object sender, WeatherDataEventArgs e)
+        public void WeatherHandler_WeatherDataReceived(object sender, WeatherDataEventArgs e)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
@@ -26,7 +28,6 @@ namespace UnitacAss
                 forecast.Current = e.WeatherData.Current;
                 forecast.Forecast = e.WeatherData.Forecast;
 
-                // Update the bindings
                 OnPropertyChanged(nameof(BindingContext));
             });
         }
