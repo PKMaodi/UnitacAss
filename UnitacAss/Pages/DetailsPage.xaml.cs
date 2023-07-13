@@ -1,21 +1,15 @@
 using UnitacAss.Models;
+using Microsoft.Maui.Controls;
 
-namespace UnitacAss;
-
-public partial class DetailsPage : ContentPage
+namespace UnitacAss
 {
-    private DayWeather selectedForecast;
+    public partial class DetailsPage : ContentPage
+    {
+        public DetailsPage(DayWeather selectedDay)
+        {
+            InitializeComponent();
 
-
-    public DetailsPage(DayWeather selectedForecast){
-        InitializeComponent();
-        this.selectedForecast = selectedForecast;
-        BindingContext = selectedForecast;
-    }
-
-    public bool IsBackButtonEnabled { get; internal set; }
-
-    private async void OnGoBackClicked(object sender, EventArgs e){
-        await Navigation.PopAsync();
+            BindingContext = selectedDay;
+        }
     }
 }

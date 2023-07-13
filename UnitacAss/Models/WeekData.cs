@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitacAss.Models
 {
-    class WeekData
+    public class WeekData
     {
         public string StringFormat { get; set; }
         public string Date { get; set; }

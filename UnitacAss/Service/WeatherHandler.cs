@@ -9,6 +9,8 @@ namespace UnitacAss.Service
 {
     public class WeatherHandler
     {
+        public event EventHandler<WeatherDataEventArgs> WeatherDataReceived;
+
         public async void GetWeatherData()
         {
             var client = new HttpClient();
@@ -17,28 +19,36 @@ namespace UnitacAss.Service
                 Method = HttpMethod.Get,
                 RequestUri = new Uri("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Pretoria&days=7"),
                 Headers =
-            {
-                { "X-RapidAPI-Key", "8d6a83b7a3mshe727e25aa80e7ebp1a6d73jsndbd2866866a7" },
-            { "X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com" },
-            },
+                {
+                    { "X-RapidAPI-Key", "8d6a83b7a3mshe727e25aa80e7ebp1a6d73jsndbd2866866a7" },
+                    { "X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com" },
+                },
             };
+
             using (var response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
-                // Parse the JSON string
-                parseJSONData(body);
-            }
+                var forecastData = JsonConvert.DeserializeObject<WeatherForecast>((string)body);
 
+                // Raise the WeatherDataReceived event
+                OnWeatherDataReceived(new WeatherDataEventArgs(forecastData));
+            }
         }
 
-        private void parseJSONData(object body)
+        protected virtual void OnWeatherDataReceived(WeatherDataEventArgs e)
         {
-            //Parse the data
-            var forecastData = JsonConvert.DeserializeObject<WeatherForecast>((string)body);
+            WeatherDataReceived?.Invoke(this, e);
+        }
+    }
 
-            // ListView to display the forecast for the week
-            var ItemsSource = forecastData.Forecast;
+    public class WeatherDataEventArgs : EventArgs
+    {
+        public WeatherForecast WeatherData { get; }
+
+        public WeatherDataEventArgs(WeatherForecast weatherData)
+        {
+            WeatherData = weatherData;
         }
     }
 }

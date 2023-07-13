@@ -1,23 +1,40 @@
-﻿using UnitacAss.Models;
-using Newtonsoft.Json;
+﻿using Microsoft.Maui.Controls;
+using UnitacAss.Models;
+using UnitacAss.Service;
 
-namespace UnitacAss;
-
-public partial class LandingPage : ContentPage
+namespace UnitacAss
 {
-    private void goToDetailsPage(object sender, SelectedItemChangedEventArgs e)
+    public partial class LandingPage : ContentPage
     {
-        // Get the selected item's data
-        var item = e.SelectedItem as DayWeather;
+        private WeatherHandler weatherHandler;
 
-        // Create a new DetailsPage
-        var detailsPage = new DetailsPage(item);
+        public LandingPage()
+        {
+            InitializeComponent();
 
-        // Set the IsBackButtonEnabled property to true so that the user can navigate back to the LandingPage
-        detailsPage.IsBackButtonEnabled = true;
+            weatherHandler = new WeatherHandler();
+            weatherHandler.WeatherDataReceived += WeatherHandler_WeatherDataReceived;
 
-        // Navigate to the DetailsPage
-        //MainPage.Current.Navigation.PushAsync(detailsPage);
+            BindingContext = new WeatherForecast();
+        }
+
+        private void WeatherHandler_WeatherDataReceived(object sender, WeatherDataEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var forecast = (WeatherForecast)BindingContext;
+                forecast.Current = e.WeatherData.Current;
+                forecast.Forecast = e.WeatherData.Forecast;
+
+                // Update the bindings
+                OnPropertyChanged(nameof(BindingContext));
+            });
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            weatherHandler.GetWeatherData();
+        }
     }
 }
-
