@@ -11,5 +11,13 @@ namespace UnitacAss
 
             BindingContext = selectedDay;
         }
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync();
+
+            return true;
+
+        }
     }
 }
+
